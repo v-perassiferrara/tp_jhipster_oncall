@@ -1,0 +1,27 @@
+{
+  "oncallApp": {
+    "tarifaDeServicio": {
+      "home": {
+        "title": "Tarifa De Servicios",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Tarifa De Servicio",
+        "createOrEditLabel": "Create or edit a Tarifa De Servicio",
+        "notFound": "No Tarifa De Servicios found"
+      },
+      "created": "A new Tarifa De Servicio is created with identifier {{ param }}",
+      "updated": "A Tarifa De Servicio is updated with identifier {{ param }}",
+      "deleted": "A Tarifa De Servicio is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tarifa De Servicio {{ id }}?"
+      },
+      "detail": {
+        "title": "Tarifa De Servicio"
+      },
+      "id": "ID",
+      "costoPorMinuto": "Costo Por Minuto",
+      "vigenteDesde": "Vigente Desde",
+      "vigenteHasta": "Vigente Hasta",
+      "servicio": "Servicio"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (costoDeIncidente(); as costoDeIncidenteRef) {
+      <div>
+        <h2 data-cy="costoDeIncidenteDetailsHeading">
+          <span jhiTranslate="oncallApp.costoDeIncidente.detail.title">Costo De Incidente</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ costoDeIncidenteRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="oncallApp.costoDeIncidente.minutosCaidos">Minutos Caidos</span></dt>
+          <dd>
+            <span>{{ costoDeIncidenteRef.minutosCaidos }}</span>
+          </dd>
+          <dt><span jhiTranslate="oncallApp.costoDeIncidente.montoTotal">Monto Total</span></dt>
+          <dd>
+            <span>{{ costoDeIncidenteRef.montoTotal }}</span>
+          </dd>
+          <dt><span jhiTranslate="oncallApp.costoDeIncidente.calculadoEn">Calculado En</span></dt>
+          <dd>
+            <span>{{ costoDeIncidenteRef.calculadoEn | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="oncallApp.costoDeIncidente.incidente">Incidente</span></dt>
+          <dd>
+            @if (costoDeIncidente()!.incidente) {
+              <div>
+                <a [routerLink]="['/incidente', costoDeIncidente()!.incidente?.id, 'view']">{{ costoDeIncidenteRef.incidente?.titulo }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="oncallApp.costoDeIncidente.servicio">Servicio</span></dt>
+          <dd>
+            @if (costoDeIncidente()!.servicio) {
+              <div>
+                <a [routerLink]="['/servicio', costoDeIncidente()!.servicio?.id, 'view']">{{ costoDeIncidenteRef.servicio?.nombre }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="oncallApp.costoDeIncidente.periodo">Periodo</span></dt>
+          <dd>
+            @if (costoDeIncidente()!.periodo) {
+              <div>
+                <a [routerLink]="['/periodo-de-facturacion', costoDeIncidente()!.periodo?.id, 'view']">{{
+                  costoDeIncidenteRef.periodo?.fechaInicio
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left" />&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/costo-de-incidente', costoDeIncidenteRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt" />&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

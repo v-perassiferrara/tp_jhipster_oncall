@@ -1,0 +1,189 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-costo-de-incidente-heading"
+        data-cy="CostoDeIncidenteCreateUpdateHeading"
+        jhiTranslate="oncallApp.costoDeIncidente.home.createOrEditLabel"
+      >
+        Crear o editar Costo De Incidente
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="global.field.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let minutosCaidosRef = editForm.get('minutosCaidos')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_minutosCaidos" jhiTranslate="oncallApp.costoDeIncidente.minutosCaidos">Minutos Caidos</label>
+          <input
+            type="number"
+            class="form-control"
+            name="minutosCaidos"
+            id="field_minutosCaidos"
+            data-cy="minutosCaidos"
+            formControlName="minutosCaidos"
+          />
+          @if (minutosCaidosRef.invalid && (minutosCaidosRef.dirty || minutosCaidosRef.touched)) {
+            <div>
+              @if (minutosCaidosRef.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              @if (minutosCaidosRef.errors?.min) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.min" [translateValues]="{ min: '1' }"
+                  >Este campo debe ser mayor que 1.</small
+                >
+              }
+              <small class="form-text text-danger" [hidden]="!minutosCaidosRef.errors?.number" jhiTranslate="entity.validation.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let montoTotalRef = editForm.get('montoTotal')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_montoTotal" jhiTranslate="oncallApp.costoDeIncidente.montoTotal">Monto Total</label>
+          <input
+            type="number"
+            class="form-control"
+            name="montoTotal"
+            id="field_montoTotal"
+            data-cy="montoTotal"
+            formControlName="montoTotal"
+          />
+          @if (montoTotalRef.invalid && (montoTotalRef.dirty || montoTotalRef.touched)) {
+            <div>
+              @if (montoTotalRef.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              @if (montoTotalRef.errors?.min) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.min" [translateValues]="{ min: '0' }"
+                  >Este campo debe ser mayor que 0.</small
+                >
+              }
+              <small class="form-text text-danger" [hidden]="!montoTotalRef.errors?.number" jhiTranslate="entity.validation.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_calculadoEn" jhiTranslate="oncallApp.costoDeIncidente.calculadoEn">Calculado En</label>
+          <div class="d-flex">
+            <input
+              id="field_calculadoEn"
+              data-cy="calculadoEn"
+              type="datetime-local"
+              class="form-control"
+              name="calculadoEn"
+              formControlName="calculadoEn"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_incidente" jhiTranslate="oncallApp.costoDeIncidente.incidente">Incidente</label>
+          <select
+            class="form-control"
+            id="field_incidente"
+            data-cy="incidente"
+            name="incidente"
+            formControlName="incidente"
+            [compareWith]="compareIncidente"
+          >
+            @if (editForm.get(['incidente'])!.value === null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (incidenteOption of incidentesSharedCollection(); track $index) {
+              <option [ngValue]="incidenteOption">{{ incidenteOption.titulo }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['incidente'])!.invalid && (editForm.get(['incidente'])!.dirty || editForm.get(['incidente'])!.touched)) {
+          <div>
+            @if (editForm.get(['incidente'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_servicio" jhiTranslate="oncallApp.costoDeIncidente.servicio">Servicio</label>
+          <select
+            class="form-control"
+            id="field_servicio"
+            data-cy="servicio"
+            name="servicio"
+            formControlName="servicio"
+            [compareWith]="compareServicio"
+          >
+            @if (editForm.get(['servicio'])!.value === null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (servicioOption of serviciosSharedCollection(); track $index) {
+              <option [ngValue]="servicioOption">{{ servicioOption.nombre }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['servicio'])!.invalid && (editForm.get(['servicio'])!.dirty || editForm.get(['servicio'])!.touched)) {
+          <div>
+            @if (editForm.get(['servicio'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_periodo" jhiTranslate="oncallApp.costoDeIncidente.periodo">Periodo</label>
+          <select
+            class="form-control"
+            id="field_periodo"
+            data-cy="periodo"
+            name="periodo"
+            formControlName="periodo"
+            [compareWith]="comparePeriodoDeFacturacion"
+          >
+            @if (editForm.get(['periodo'])!.value === null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (periodoDeFacturacionOption of periodoDeFacturacionsSharedCollection(); track $index) {
+              <option [ngValue]="periodoDeFacturacionOption">{{ periodoDeFacturacionOption.fechaInicio }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['periodo'])!.invalid && (editForm.get(['periodo'])!.dirty || editForm.get(['periodo'])!.touched)) {
+          <div>
+            @if (editForm.get(['periodo'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban" />&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving()"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save" />&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<div>
+  <h2 id="page-heading" data-cy="PeriodoDeFacturacionHeading">
+    <span jhiTranslate="oncallApp.periodoDeFacturacion.home.title">Periodo De Facturacions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading()">
+        <fa-icon icon="sync" [animation]="isLoading() ? 'spin' : undefined" />
+        <span jhiTranslate="oncallApp.periodoDeFacturacion.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-periodo-de-facturacion"
+        [routerLink]="['/periodo-de-facturacion/new']"
+      >
+        <fa-icon icon="plus" />
+        <span jhiTranslate="oncallApp.periodoDeFacturacion.home.createLabel">Crear nuevo Periodo De Facturacion</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (periodoDeFacturacions().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="oncallApp.periodoDeFacturacion.home.notFound">Ningún Periodo De Facturacions encontrado</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaInicio">
+              <div class="d-flex">
+                <span jhiTranslate="oncallApp.periodoDeFacturacion.fechaInicio">Fecha Inicio</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaFin">
+              <div class="d-flex">
+                <span jhiTranslate="oncallApp.periodoDeFacturacion.fechaFin">Fecha Fin</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cerrado">
+              <div class="d-flex">
+                <span jhiTranslate="oncallApp.periodoDeFacturacion.cerrado">Cerrado</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (periodoDeFacturacion of periodoDeFacturacions(); track trackId(periodoDeFacturacion)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/periodo-de-facturacion', periodoDeFacturacion.id, 'view']">{{ periodoDeFacturacion.id }}</a>
+              </td>
+              <td>{{ periodoDeFacturacion.fechaInicio | formatMediumDate }}</td>
+              <td>{{ periodoDeFacturacion.fechaFin | formatMediumDate }}</td>
+              <td>{{ periodoDeFacturacion.cerrado }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/periodo-de-facturacion', periodoDeFacturacion.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye" />
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/periodo-de-facturacion', periodoDeFacturacion.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt" />
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(periodoDeFacturacion)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times" />
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

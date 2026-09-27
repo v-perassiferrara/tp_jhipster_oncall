@@ -1,0 +1,29 @@
+{
+  "oncallApp": {
+    "costoDeIncidente": {
+      "home": {
+        "title": "Costo De Incidentes",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Costo De Incidente",
+        "createOrEditLabel": "Crear o editar Costo De Incidente",
+        "notFound": "Ningún Costo De Incidentes encontrado"
+      },
+      "created": "Un nuevo Costo De Incidente ha sido creado con el identificador {{ param }}",
+      "updated": "Un Costo De Incidente ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Costo De Incidente ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Costo De Incidente {{ id }}?"
+      },
+      "detail": {
+        "title": "Costo De Incidente"
+      },
+      "id": "ID",
+      "minutosCaidos": "Minutos Caidos",
+      "montoTotal": "Monto Total",
+      "calculadoEn": "Calculado En",
+      "incidente": "Incidente",
+      "servicio": "Servicio",
+      "periodo": "Periodo"
+    }
+  }
+}

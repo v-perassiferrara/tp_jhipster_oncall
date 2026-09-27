@@ -1,0 +1,29 @@
+{
+  "oncallApp": {
+    "costoDeIncidente": {
+      "home": {
+        "title": "Costo De Incidentes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Costo De Incidente",
+        "createOrEditLabel": "Create or edit a Costo De Incidente",
+        "notFound": "No Costo De Incidentes found"
+      },
+      "created": "A new Costo De Incidente is created with identifier {{ param }}",
+      "updated": "A Costo De Incidente is updated with identifier {{ param }}",
+      "deleted": "A Costo De Incidente is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Costo De Incidente {{ id }}?"
+      },
+      "detail": {
+        "title": "Costo De Incidente"
+      },
+      "id": "ID",
+      "minutosCaidos": "Minutos Caidos",
+      "montoTotal": "Monto Total",
+      "calculadoEn": "Calculado En",
+      "incidente": "Incidente",
+      "servicio": "Servicio",
+      "periodo": "Periodo"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+.devcontainer/Dockerfile skip
+.gitignore skip
+.gitattributes skip
+.devcontainer/devcontainer.json skip
+README.md skip

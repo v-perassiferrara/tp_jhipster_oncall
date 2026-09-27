@@ -1,0 +1,27 @@
+{
+  "oncallApp": {
+    "periodoDeFacturacion": {
+      "home": {
+        "title": "Periodo De Facturacions",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Periodo De Facturacion",
+        "createOrEditLabel": "Crear o editar Periodo De Facturacion",
+        "notFound": "Ningún Periodo De Facturacions encontrado"
+      },
+      "created": "Un nuevo Periodo De Facturacion ha sido creado con el identificador {{ param }}",
+      "updated": "Un Periodo De Facturacion ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Periodo De Facturacion ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Periodo De Facturacion {{ id }}?"
+      },
+      "detail": {
+        "title": "Periodo De Facturacion"
+      },
+      "id": "ID",
+      "fechaInicio": "Fecha Inicio",
+      "fechaFin": "Fecha Fin",
+      "cerrado": "Cerrado",
+      "costo": "Costo"
+    }
+  }
+}
