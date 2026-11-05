@@ -39,14 +39,15 @@ El desempate permite responder ante un solapamiento, pero no corrige la planific
 La regla C será una base para costos por horario; todavía no define tarifas,
 redondeos, cálculo monetario ni reporte mensual.
 
-Antes de dar la implementación por terminada verificaremos con pruebas:
+La implementación se verificó con pruebas:
 - Inicio inclusivo, fin exclusivo y relevo entre dos turnos consecutivos.
 - Reemplazo frente a regular, inicio más reciente y desempate por ID.
 - Hueco de cobertura, ausencia de rotaciones y rotaciones inactivas.
 - Varias rotaciones, aislamiento entre equipos y servicios.
 - El mismo instante expresado con distintos offsets, incluido un cambio de DST.
 - Respuesta del endpoint para cobertura y falta de cobertura.
-Estas pruebas están pendientes: este ADR registra la especificación, no resultados.
+Verificación realizada: 8 pruebas unitarias de regla C y 15 de integración aprobadas,
+además de 18 de deduplicación. Comando, alcance y limitaciones en `docs/decisiones.md`.
 
 ## Alternativas
 - Elegir el primer turno que devuelva la base: descartado por falta de determinismo.

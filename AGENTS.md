@@ -20,6 +20,7 @@ Las rutas Java siguientes parten de `src/main/java/ar/edu/um/isa/oncall/`.
 - Backend: `./mvnw`. Frontend: `npm start` (requieren entorno y dependencias del README).
 - Compilar backend: `./mvnw -P-webapp compile`.
 - Prueba docente: `./mvnw -P-webapp -Dtest=DeduplicacionDeAlertasServiceTest test`.
+- Regla C: `./mvnw -P-webapp -Dspring.profiles.active=testdev -Dtest=TurnoVigenteServiceTest,GuardiaVigenteResourceIT test` (Docker activo).
 - Revisar cambios: `git diff --check` y `git diff`.
 
 ## Reglas
